@@ -22,5 +22,5 @@ A simple web application to get information from Spotify API
   
 # Technology
 
-  The application constructed by Express framework and nodejs as backend server and Angularjs in the frontend.I also used    
+  The application constructed by Express framework and nodejs as backend server and Angularjs in the frontend.I also used   
   bootstrap as UI framwork.
