@@ -1,0 +1,75 @@
+<head>
+	<title>Spotifier</title>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="./css/style.css">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+
+
+	<script src="./javascript/app.js"></script>
+</head>
+
+<body ng-app="Spotifier" ng-controller="MainCtrl">
+
+<h2>Search for artist's</h2>
+</br>
+<div class="row">
+	<div class="col-md-4">
+	</div>
+	<div class="col-md-4">
+		<div id="custom-search-input">
+			<div class="input-group col-md-12">
+				<input type="text" class="form-control input-lg" placeholder="an artist's name" ng-model="input" required/>
+				<span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="submit" ng-click="searchFunc()">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<br/>
+<br/>
+
+<div class="container-fluid">
+	<table class="table table-hover">
+		<thead>
+		<tr>
+			<th><a href="" ng-click="order('image')">Image</a></th>
+			<th><a href="" ng-click="order('name')">Name</a></th>
+			<th><a href="" ng-click="order('genres')">Genres</a></th>
+			<th><a href="" ng-click="order('popularity')">Popularity</a></th>
+			<th><a href="" ng-click="order('followers')">Followers</a></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="item in items | orderBy:predicate:reverse |filter:paginate| filter:search"
+			ng-class-odd="'odd'" ng-click="setSelected(item.id)" ng-class="{selected: item._id === idSelectedItem}">
+			<td><img ng-src="{{item.images}}" height="150" width="150"></td>
+			<td>{{ item.name}}</td>
+			<td>{{ item.genres}}</td>
+			<td>{{ item.popularity}}</td>
+			<td>{{ item.followers.total}}</td>
+		</tr>
+		</tbody>
+	</table>
+
+	<pagination total-items="totalItems" ng-model="currentPage"
+				max-size="10" boundary-links="true"
+				items-per-page="numPerPage" class="pagination-sm" ng-show="items.length>numPerPage">
+	</pagination>
+</div>
+</body>
