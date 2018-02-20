@@ -6,7 +6,7 @@ var client_secret = 'e6d94a3fee59498ab366c7790f169785'; // Your secret
 var path = require('path');
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 app.use(express.static(path.join(__dirname, 'views')));
 
